@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue-for和v-bind的结合</title>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!--作业需求：点击列表中的某一项，那么该项的文字变成红色-->
+    <div id="app">
+        <ul>
+            <!--答案分析：在数据对象 data 中加一个属性 active_index，保存当前的index。
+            如果active_index == index，则动态加载类
+            -->
+            <li v-for="(item,index) in movies" v-on:click="active_index=index" v-bind:class="{red:active_index==index}">{{index}} - {{item}}</li>
+        </ul>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                movies: ['机械战警','肖申克的救赎','海王'],
+                active_index: -1            
+            }
+        });
+    </script>
+</body>
+</html>
