@@ -94,11 +94,17 @@
             },
             computed: {
                 totalPrice() {
+                    /*
                     let res = 0;
                     for (let i = 0; i < this.books.length; i++) {
                         res += this.books[i].price * this.books[i].count;
                     }
                     return res;
+                    */
+                   //用数组高阶函数reduce()
+                    return this.books.reduce((accumulator,book) => {
+                        return accumulator + book.price * book.count;
+                    },0);
                 }
             },
             //定义过滤器，过滤器用来进行常见的文本格式化
