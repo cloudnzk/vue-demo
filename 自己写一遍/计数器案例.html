@@ -13,9 +13,9 @@
     <script src="../js/vue.js"></script>
     <div id="app">
         <!-- v-on:click可以简写为@click -->
-        <button @click="add">+</button>
-        {{num}}
         <button @click="sub">-</button>
+            {{num}}
+        <button @click="add">+</button>
     </div>
     <script>
         new Vue({
@@ -24,10 +24,10 @@
                 num: 0
             },
             methods: {
-                add(){
+                add: function(){
                     this.num++;
                 },
-                sub(){
+                sub: function(){
                     this.num--;
                 }
             }
