@@ -1,0 +1,38 @@
+<!--
+笔记：
+1.methods属性：定义方法
+2.v-on:click（简写为@click）监听鼠标点击事件
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计数器案例</title>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    <div id="app">
+        <!-- v-on:click可以简写为@click -->
+        <button @click="add">+</button>
+        {{num}}
+        <button @click="sub">-</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                num: 0
+            },
+            methods: {
+                add(){
+                    this.num++;
+                },
+                sub(){
+                    this.num--;
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

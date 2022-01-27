@@ -1,0 +1,29 @@
+<!--
+笔记：
+1.v-for指令用法：写在标签内。使用in关键字遍历里面的元素
+2.Mustache语法：{{data}}
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表展示：v-for指令</title>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    <div id="app">
+        <ul>
+            <li v-for="artist in artist_list">{{artist}}</li>
+        </ul>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data:{
+                msg: 'hello',
+                artist_list: ['初音未来','猫菠萝','古川本舗']
+            }
+        });
+    </script>
+</body>
+</html>
