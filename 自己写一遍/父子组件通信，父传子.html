@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父子组件通信，父传子</title>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    <div id="app">
+        <cpn :cmovies="movies" :cmessage="message"></cpn>
+    </div>
+    
+    <template id="cpn">
+        <div>
+            {{cmovies}}
+            {{cmessage}}
+        </div>
+    </template>
+    
+    <script>
+        //子组件，父传子：props
+        const cpn = {
+            template: "#cpn",
+            props:['cmovies','cmessage'],
+            data(){
+                //必须返回一个实例
+                return {}
+            },
+            methods:{
+                
+            }
+        };
+        //root组件，父组件
+        new Vue({
+            el: '#app',
+            data:{
+                movies: '电影',
+                message: '简讯',
+            },
+            components: {
+                //'cpn': cpn,
+                //可以省略前面的标签名，对象的增强性写法
+                cpn
+            }
+        });
+    </script>
+</body>
+</html>

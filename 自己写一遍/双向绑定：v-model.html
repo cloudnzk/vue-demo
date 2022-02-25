@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定</title>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    <div id="app">
+        <input type="text" v-model="message">
+        {{message}}
+        <br/>
+
+        <label for="male">
+            <input type="radio" id="male" name="sex" value="男" v-model="sex">男
+        </label>
+        <label for="female">
+            <input type="radio" id="female" name="sex" value="女" v-model="sex">女
+        </label>
+        <h2>您选择的性别是{{sex}}</h2>
+        <br/>
+
+        <label for="agree">
+            <input type="checkbox" id="agree" v-model="isAgree"> 
+            同意协议
+        </label>
+        您选择的是{{isAgree}}
+        <br/>
+
+        <input type="checkbox" value="篮球" v-model="hobbies">篮球
+        <input type="checkbox" value="足球" v-model="hobbies">足球
+        <input type="checkbox" value="乒乓球" v-model="hobbies">乒乓球
+        <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+        您的爱好是{{hobbies}}
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data:{
+                message: 'hello',
+                sex: '男',
+                isAgree: false,
+                hobbies: [],
+            }
+        });
+    </script>
+</body>
+</html>

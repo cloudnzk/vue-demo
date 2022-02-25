@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性的使用</title>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    <div id="app">
+        {{fullName}}
+    </div>
+    
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                firstname: 'li',
+                lastname: 'ming'
+            },
+            //作用：对数据做一些转换再显示
+            computed: {
+                fullName: function(){
+                    return this.firstname + this.lastname;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
