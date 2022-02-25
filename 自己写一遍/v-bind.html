@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue-for和v-bind的结合</title>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    <!--作业需求：点击列表中的某一项，那么该项的文字变成红色-->
+    <div id="app">
+        <ul>
+            <!--
+                v-for可以遍历索引
+                答案分析：在数据对象 data 中加一个属性 current_index，保存当前点击的index。
+                如果current_index == index，则动态加载类
+            -->
+            <li v-for="(artist,index) in artist_list" @click="changeColor(index)" :class="{red:index==current_index}">{{artist}}</li>
+        </ul>
+    </div>
+    
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                msg: 'message',
+                artist_list: ['初音未来','猫菠萝','古川本舗'],
+                current_index: -1
+            },
+            methods:{
+                changeColor: function(index){
+                    this.current_index = index;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
