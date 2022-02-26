@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父子组件通信，子传父</title>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    <!-- 父组件模板 -->
+    <div id="app">
+        <!-- 监听子组件发射过来的自定义事件 -->
+        <!-- 使用同一个监听函数 -->
+        <cpn @add="changeCount" @sub="changeCount"></cpn>
+        当前的计数是{{count}}
+    </div>
+    
+    <!-- 子组件模板 -->
+    <template id="cpn">
+        <div>
+            <button @click="add">+</button>
+            <button @click="sub">-</button>
+        </div>
+    </template>
+    
+    <script>
+        //子组件
+        const cpn = {
+            template: "#cpn",
+            
+            data(){
+                //必须返回一个实例
+                return {
+                    count: 0
+                }
+            },
+            methods:{
+                add(){
+                    //发射事件，第二个参数是传给父组件的数据
+                    this.count++;
+                    this.$emit('add',this.count);
+                },
+                sub(){
+                    this.count--;
+                    this.$emit('sub',this.count);
+                }
+            }
+        };
+        //root组件，父组件
+        new Vue({
+            el: '#app',
+            data:{
+                //在父组件模板显示，需要定义属性
+                count: 0
+            },
+            components: {
+                //注册子组件
+                //'cpn': cpn,
+                //可以省略前面的标签名，对象的增强性写法
+                cpn
+            },
+            methods:{
+                changeCount(count){
+                    this.count = count
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -9,6 +9,7 @@
 <body>
     <script src="../js/vue.js"></script>
     <div id="app">
+        <!-- v-bind传值 -->
         <cpn :cmovies="movies" :cmessage="message"></cpn>
     </div>
     
@@ -20,10 +21,19 @@
     </template>
     
     <script>
-        //子组件，父传子：props
+        //子组件，父传子：props声明需要从父级接收的数据
         const cpn = {
             template: "#cpn",
-            props:['cmovies','cmessage'],
+            //props:['cmovies','cmessage'],
+            //prop数据验证，类型限制写法
+            props:{
+                cmovies: String,
+                cmessage: {
+                    type: String,
+                    //如果在props没有传值，就显示默认值
+                    default: '',
+                }
+            },
             data(){
                 //必须返回一个实例
                 return {}
