@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插槽的基本使用</title>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    <div id="app">
+        <cpn>
+            <!-- 替换插槽的元素 -->
+            <button>按钮</button>
+        </cpn>
+        <cpn>
+            <!--
+                <div name="special">
+                    <span>哈哈哈哈</span>
+                </div>
+            -->
+            <!-- 最新的Vue2推荐的具名插槽写法，用v-slot指令 -->
+            <template v-slot="special">
+                <span>哈哈哈哈</span>
+            </template>
+        </cpn>
+        <cpn></cpn>
+    </div>
+    
+    <template id="cpn">
+        <!-- 组件模板需要一个根元素，如下面的div，不然会报错-->
+        <div>
+            <h2>我是组件</h2>
+            <p>我是组件啊啊啊</p>
+            <!-- 加入插槽 -->
+            <slot></slot>
+            <!-- 具名插槽 -->
+            <slot name="special"></slot>
+        </div>
+    </template>
+    
+    <script>
+        const cpn = {
+            template: "#cpn",
+            data(){
+                return {}
+            }
+        };
+        new Vue({
+            el: '#app',
+            data:{
+                
+            },
+            components: {
+                cpn
+            }
+        });
+    </script>
+</body>
+</html>

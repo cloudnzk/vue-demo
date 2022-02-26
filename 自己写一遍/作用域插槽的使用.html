@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域插槽的基本使用</title>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    <div id="app">
+        <cpn>
+            <!-- 目的是获取子组件中的planguages-->
+            <!-- 定义插槽对象的名字：slotProps -->
+            <template v-slot:default="slotProps">
+                <div>
+                    <!-- 访问插槽对象的属性attribute -->
+                    <span v-for="item in slotProps.data" :key="item">{{item}} </span>
+                </div>
+            </template>
+        </cpn>
+    </div>
+    
+    <template id="cpn">
+        <div>
+            <!-- 将data作为一个slot元素的attribute动态绑定上去 -->
+            <slot v-bind:data="planguages">
+                <ul>
+                    <li v-for="item in planguages" :key="item">{{item}}</li>
+                </ul>
+            </slot>
+        </div>
+    </template>
+    
+    <script>
+        const cpn = {
+            template: "#cpn",
+            data(){
+                return {
+                    planguages: ['JavaScript','C++','Java','C#','Python']
+                }
+            }
+        };
+        new Vue({
+            el: '#app',
+            data:{
+                
+            },
+            components: {
+                cpn
+            }
+        });
+    </script>
+</body>
+</html>
