@@ -6,7 +6,9 @@
     <!-- v-bind动态绑定用户ID -->
     <router-link :to="'/user/'+userId">用户</router-link>
     <router-link :to="{path:'/profile',query:{name:'why',age:'18'}}">档案</router-link>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
     <!-- 渲染成button，不记录history -->
     <!--
     <router-link to="/home" tag="button" replace>首页</router-link>
