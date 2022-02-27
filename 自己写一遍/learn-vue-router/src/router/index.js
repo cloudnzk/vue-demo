@@ -45,19 +45,37 @@ const routes = [
                 path: 'message',
                 component: HomeMessage
             }
-        ]
+        ],
+        //路由元信息
+        meta: {
+            title: '首页'
+        }
     },
     {
         path:'/about',
-        component: About
+        component: About,
+        meta: { 
+            title: '关于'
+        },
+        //路由独享的守卫
+        beforeEnter: (to, from, next) => {
+            console.log(to.path,from.path)
+            next()
+        }
     },
     {
         path:'/user/:userId',
-        component: User
+        component: User,
+        meta: {
+            title: '用户'
+        }
     },
     {
         path:'/profile',
-        component: Profile
+        component: Profile,
+        meta: {
+            title: '档案'
+        }
     }
 ]
 
@@ -65,6 +83,19 @@ const router = new VueRouter({
     routes,
     mode: 'history',
     linkActiveClass: 'active'
+})
+
+//利用导航守卫修改title。前置钩子
+router.beforeEach((to,from,next) =>{
+    //从from跳转到to,next函数必须执行一次
+    //有嵌套路由的情况，需要使用$route.matched[]访问
+    window.document.title = to.matched[0].meta.title
+    next()
+})
+
+//后置钩子（hook），跳转后回调
+router.afterEach((to,from) => {
+    console.log(to.path,from.path)
 })
 
 // 3.将router对象传入到Vue实例
